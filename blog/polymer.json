@@ -2,8 +2,8 @@
   "entrypoint": "index.html",
   "shell": "src/blog-app.html",
   "fragments": [
-    "src/blog-view1.html",
-    "src/blog-view2.html",
+    "src/blog-index.html",
+    "src/blog-new.html",
     "src/blog-view3.html"
   ]
 }

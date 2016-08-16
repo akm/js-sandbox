@@ -75,8 +75,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <app-drawer>
         <app-toolbar>Menu</app-toolbar>
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="view1" href="/view1">View One</a>
-          <a name="view2" href="/view2">View Two</a>
+          <a name="index" href="/index">View One</a>
+          <a name="new" href="/new">View Two</a>
           <a name="view3" href="/view3">View Three</a>
         </iron-selector>
       </app-drawer>
@@ -92,8 +92,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </app-header>
 
         <iron-pages role="main" selected="[[page]]" attr-for-selected="name">
-          <blog-view1 name="view1"></blog-view1>
-          <blog-view2 name="view2"></blog-view2>
+          <blog-index name="index"></blog-index>
+          <blog-new name="new"></blog-new>
           <blog-view3 name="view3"></blog-view3>
         </iron-pages>
 
@@ -124,7 +124,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       ],
 
       _routePageChanged: function(page) {
-        this.page = page || 'view1';
+        this.page = page || 'index';
       },
 
       _pageChanged: function(page) {
