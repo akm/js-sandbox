@@ -3,7 +3,6 @@
   "shell": "src/blog-app.html",
   "fragments": [
     "src/blog-index.html",
-    "src/blog-new.html",
-    "src/blog-view3.html"
+    "src/blog-new.html"
   ]
 }
