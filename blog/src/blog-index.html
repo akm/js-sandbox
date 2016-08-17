@@ -10,6 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/idb-node/idb-node.html">
+<link rel="import" href="../bower_components/marked-element/marked-element.html">
 
 <dom-module id="blog-index">
 
@@ -72,7 +73,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div class="blog">
             <div class="pad">
               <div class="primary">[[item.title]] {{readableDate(item.created_at)}}</div>
-              <div class="secondary dim">[[item.content]]</div>
+              <div class="secondary">
+                <marked-element markdown="[[item.content]]"></marked-element>
+              </div>
             </div>
           </div>
         </div>
