@@ -31,7 +31,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               key-path="uuid"></idb-node>
 
     <template is="dom-repeat" id="blogs" items="{{blogs}}">
-      <blog-unit
+      <blog-unit editable
          title="{{item.title}}"
          content="{{item.content}}"
          created_at="{{item.created_at}}"></blog-unit>
