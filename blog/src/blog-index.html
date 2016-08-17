@@ -93,13 +93,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
       ready: function(){
         var that = this;
-        this.$.idb.addEventListener('idb-ready', function () {
-          this.getAll()
-            .then(function(blogs){
-              that.blogs = blogs;
-              console.log(blogs)})
-            .catch(error => console.log(error));
+        this.$.idb.addEventListener('idb-ready', function(){
+          that.refresh.call(that);
         });
+      },
+      refresh: function () {
+        this.$.idb.getAll()
+            .then(blogs => this.blogs = blogs)
+            .catch(error => console.log(error));
       }
     });
 
