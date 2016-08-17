@@ -91,7 +91,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </app-header>
 
         <iron-pages role="main" selected="[[page]]" attr-for-selected="name">
-          <blog-index name="index"></blog-index>
+          <blog-index name="index" id="blog-index"></blog-index>
           <blog-new name="new"></blog-new>
         </iron-pages>
 
@@ -136,6 +136,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // load page import on demand.
         this.importHref(
           this.resolveUrl('blog-' + page + '.html'), null, null, true);
+        // Don't refresh on loading blog-index
+        if (page == 'index' && this.$['blog-index'].refresh) {
+          this.$['blog-index'].refresh();
+        }
       }
 
     });
