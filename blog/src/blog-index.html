@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/idb-node/idb-node.html">
 
 <dom-module id="blog-index">
 
@@ -19,38 +20,63 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
         padding: 10px;
       }
-      .card {
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-        padding: 16px;
-        margin: 24px;
-        border-radius: 5px;
-        background-color: #fff;
-        color: #757575;
+
+      .blog {
+        @apply(--layout-horizontal);
+        padding: 20px;
+        border-radius: 8px;
+        background-color: white;
+        border: 1px solid #ddd;
+        max-width: 800px;
+        margin: 16px auto 0 auto;
       }
-      .circle {
-        display: inline-block;
-        height: 64px;
-        width: 64px;
-        border-radius: 50%;
-        background: #ddd;
-        line-height: 64px;
-        font-size: 30px;
-        color: #555;
-        text-align: center;
+      .blog:focus {
+        outline: 0;
+        border-color: #333;
       }
-      h1 {
-        font-size: 22px;
-        margin: 16px 0;
-        color: #212121;
+      .avatar {
+        height: 40px;
+        width: 40px;
+        border-radius: 20px;
+        box-sizing: border-box;
+        background-color: #DDD;
+      }
+      .pad {
+        padding: 0 16px;
+        @apply(--layout-flex);
+        @apply(--layout-vertical);
+      }
+      .primary {
+        font-size: 16px;
+        font-weight: bold;
+      }
+      .secondary {
+        font-size: 14px;
+      }
+      .dim {
+        color: gray;
+      }
+      .spacer {
+        @apply(--layout-flex);
       }
     </style>
 
-    <div class="card">
-      <div class="circle">1</div>
-      <h1>View One</h1>
-      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.
-      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
-    </div>
+    <idb-node id="idb"
+              database-name="blog-app"
+              version="1"
+              object-store="blogs"
+              key-path="uuid"></idb-node>
+
+    <template is="dom-repeat" id="blogs" items="{{blogs}}">
+        <div>
+          <div class="blog">
+            <div class="pad">
+              <div class="primary">[[item.title]] [[index]]</div>
+              <div class="secondary dim">[[item.content]]</div>
+            </div>
+          </div>
+        </div>
+    </template>
 
   </template>
 
@@ -58,8 +84,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     Polymer({
 
-      is: 'blog-index'
-
+      is: 'blog-index',
+      properties: {
+        blogs: {
+          type: Array,
+          value: [],
+        }
+      },
+      ready: function(){
+        var that = this;
+        this.$.idb.addEventListener('idb-ready', function () {
+          this.getAll()
+            .then(function(blogs){
+              that.blogs = blogs;
+              console.log(blogs)})
+            .catch(error => console.log(error));
+        });
+      }
     });
 
   </script>
