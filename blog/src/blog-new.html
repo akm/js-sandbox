@@ -53,14 +53,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           value: ''
         }
       },
-      ready: function () {
-        var that = this;
-        this.$.idb.addEventListener('idb-ready', function () {
-          console.log("idb-ready");
-        });
-      },
       create: function(e) {
-        console.log("create#0");
         var blog = {
           uuid: uuid.v1(),
           title: this.title,
