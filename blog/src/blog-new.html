@@ -29,7 +29,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <idb-node id="idb"
               database-name="blog-app"
-              version="1"
+              version="2"
               object-store="blogs"
               key-path="uuid"></idb-node>
 
@@ -57,7 +57,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var blog = {
           uuid: uuid.v1(),
           title: this.title,
-          content: this.content
+          content: this.content,
+          created_at: new Date().getTime()
         };
         this.$.idb.put(blog)
           .then(() => this.fire('pageEvent', {page: 'index'}));
