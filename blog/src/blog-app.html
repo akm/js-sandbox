@@ -117,6 +117,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       },
 
+      ready: function() {
+        this.addEventListener('pageEvent', this._pageChangeRequested);
+      },
+      _pageChangeRequested: function(event) {
+        this.page = event.detail.page;
+      },
+
       observers: [
         '_routePageChanged(routeData.page)'
       ],
