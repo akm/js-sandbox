@@ -99,8 +99,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
       refresh: function () {
         this.$.idb.getAll()
-            .then(blogs => this.blogs = blogs)
+            .then(blogs => this.blogs = blogs.sort(this.blogSort) )
             .catch(error => console.log(error));
+      },
+      blogSort: function(a,b) {
+        return (a.created_at < b.created_at) ? 1 : (a.created_at > b.created_at) ? -1 : 0
       },
       readableDate: function(ts) {
         return new Date(ts).toString();
