@@ -15,6 +15,8 @@
     "iron-pages": "polymerelements/iron-pages#^1.0.0",
     "iron-selector": "polymerelements/iron-selector#^1.0.0",
     "paper-icon-button": "PolymerElements/paper-icon-button#~1.1.1",
+    "paper-input": "PolymerElements/paper-input#~1.1.1",
+    "node-uuid": "broofa/node-uuid#~1.4.7",
     "polymer": "polymer/polymer#^1.4.0"
   },
   "devDependencies": {
