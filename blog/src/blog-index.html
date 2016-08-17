@@ -95,10 +95,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       },
       ready: function(){
-        var that = this;
-        this.$.idb.addEventListener('idb-ready', function(){
-          that.refresh.call(that);
-        });
+        this.$.idb.addEventListener('idb-ready', () => this.refresh());
       },
       refresh: function () {
         this.$.idb.getAll()
