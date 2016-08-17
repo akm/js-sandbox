@@ -63,9 +63,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div class="blog">
       <div class="pad">
-        <div class="primary">[[blog.title]] {{readableDate(blog.created_at)}}</div>
+        <div class="primary">[[title]] {{readableDate(created_at)}}</div>
         <div class="secondary">
-          <marked-element markdown="[[blog.content]]"></marked-element>
+          <marked-element markdown="[[content]]"></marked-element>
         </div>
       </div>
     </div>
@@ -78,10 +78,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       is: 'blog-unit',
       properties: {
-        blog: Object
+        title: {
+          type: String,
+          value: ''
+        },
+        content: {
+          type: String,
+          value: ''
+        },
+        created_at: {
+          type: Number,
+          value: null
+        }
       },
       readableDate: function(ts) {
-        return new Date(ts).toString();
+        return (ts) ? new Date(ts).toString() : null;
       }
     });
 
