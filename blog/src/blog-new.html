@@ -14,6 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../bower_components/paper-input/paper-textarea.html">
+<link rel="import" href="blog-unit.html">
 
 <script src="../bower_components/node-uuid/uuid.js"></script>
 
@@ -33,9 +34,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               object-store="blogs"
               key-path="uuid"></idb-node>
 
+    <section>
     <paper-input label="Title" value="{{title}}"></paper-input>
     <paper-textarea label="Content"  value="{{content}}" rows="3"></paper-textarea>
     <paper-button raised on-click="create"><iron-icon icon="save"></iron-icon>Save</paper-button>
+    </section>
+    <section>
+      <blog-unit
+         title="{{title}}"
+         content="{{content}}"></blog-unit>
+    </section>
   </template>
 
   <script>
@@ -65,6 +73,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.title = '';
           this.content = '';
         });
+      },
+      editingBlog: function(){
+        console.log("editingBlog");
+        return {title: this.title, content: this.content};
       }
     });
 
