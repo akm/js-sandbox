@@ -92,6 +92,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       is: 'blog-unit',
       properties: {
+        uuid: String,
         title: {
           type: String,
           value: ''
@@ -111,6 +112,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
       readableDate: function(ts) {
         return (ts) ? new Date(ts).toString() : null;
+      },
+      edit: function() {
+        this.fire('click-edit', {blog: {uuid: this.uuid}})
       }
     });
 
