@@ -64,6 +64,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return (a.created_at < b.created_at) ? 1 : (a.created_at > b.created_at) ? -1 : 0
       },
       clickBlogEdit: function(e) {
+        this.fire('pageEvent', {page: 'edit/' + e.detail.blog.uuid});
         console.log(e.detail.blog.uuid);
       }
     });
