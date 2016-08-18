@@ -35,6 +35,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       min-height: 500px;
       float: left;
     }
+
+      paper-button.delete {
+        color: white;
+        background: red;
+      }
+      paper-button.delete iron-icon {
+        color: white;
+      }
     </style>
 
     <idb-node id="idb"
@@ -47,6 +55,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-input label="Title" value="{{title}}"></paper-input>
       <paper-textarea label="Content"  value="{{content}}" rows="3"></paper-textarea>
       <paper-button raised on-click="update"><iron-icon icon="save"></iron-icon>Save</paper-button>
+      <paper-button raised class="delete" on-click="delete"><iron-icon icon="delete"></iron-icon>Delete</paper-button>
     </section>
     <section>
       <blog-unit
@@ -106,6 +115,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               this.content = '';
             });
           });
+      },
+      delete: function(e) {
+        this.$.idb.delete(this.uuid)
+          .then(() => this.fire('pageEvent', {page: 'index'}));
       },
     });
 
