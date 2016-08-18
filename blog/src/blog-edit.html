@@ -60,9 +60,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer({
 
       is: 'blog-edit',
-    properties: {
+      properties: {
         subroute: {
           type: Object,
+          notify: true,
         },
         uuid: String,
         title: {
@@ -76,15 +77,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         created_at: Number,
       },
       ready: function() {
-        this.uuid = this.subroute.path.replace(/^\//, '')
         this.$.idb.addEventListener('idb-ready', () => this.refresh());
+        this.addEventListener('subroute-changed', () => this.refresh());
       },
       refresh: function() {
+        this.uuid = this.subroute.path.replace(/^\//, '')
         this.$.idb.get(this.uuid)
           .then((blog) => {
-            this.title = blog.title;
-            this.content = blog.content;
-            this.created_at = blog.created_at
+            if (blog) {
+              this.title = blog.title;
+              this.content = blog.content;
+              this.created_at = blog.created_at
+            }
           });
       },
       update: function(e) {
