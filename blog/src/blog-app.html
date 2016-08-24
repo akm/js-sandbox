@@ -19,6 +19,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/idb-node/idb-node.html">
 <link rel="import" href="blog-icons.html">
 
 <dom-module id="blog-app">
@@ -64,6 +65,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
     </style>
+
+    <idb-node id="idb"
+              database-name="blog-app"
+              version="2"
+              object-store="blogs"
+              key-path="uuid"></idb-node>
 
     <app-location route="{{route}}"></app-location>
     <app-route
@@ -144,7 +151,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         if (page == 'index' && this.$['blog-index'].refresh) {
           this.$['blog-index'].refresh();
         }
-      }
+      },
+
+      idb: function(){
+        return this.$.idb;
+      },
 
     });
 

@@ -24,12 +24,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <idb-node id="idb"
-              database-name="blog-app"
-              version="2"
-              object-store="blogs"
-              key-path="uuid"></idb-node>
-
     <template is="dom-repeat" id="blogs" items="{{blogs}}">
       <blog-unit editable
          uuid="{{item.uuid}}"
@@ -53,10 +47,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       },
       ready: function(){
-        this.$.idb.addEventListener('idb-ready', () => this.refresh());
+        this.idb = document.querySelector('blog-app').idb();
+        // idb.addEventListener('idb-ready', () => this.refresh());
+        this.refresh()
       },
       refresh: function () {
-        this.$.idb.getAll()
+        this.idb.getAll()
             .then(blogs => this.blogs = blogs.sort(this.blogSort) )
             .catch(error => console.log(error));
       },
