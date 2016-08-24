@@ -14,6 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../bower_components/paper-input/paper-textarea.html">
 <link rel="import" href="blog-unit.html">
+<link rel="import" href="blog-db-behavior.html">
 
 <script src="../bower_components/node-uuid/uuid.js"></script>
 
@@ -62,6 +63,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer({
 
       is: 'blog-edit',
+      behaviors: [BlogDbBehavior],
       properties: {
         subroute: {
           type: Object,
@@ -77,9 +79,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           value: ''
         },
         created_at: Number,
-        idb: {
-          type: Object
-        },
       },
       ready: function() {
         this.idb.addEventListener('idb-ready', () => this.refresh());

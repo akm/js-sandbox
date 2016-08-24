@@ -14,6 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../bower_components/paper-input/paper-textarea.html">
 <link rel="import" href="blog-unit.html">
+<link rel="import" href="blog-db-behavior.html">
 
 <script src="../bower_components/node-uuid/uuid.js"></script>
 
@@ -53,6 +54,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer({
 
       is: 'blog-new',
+      behaviors: [BlogDbBehavior],
       properties: {
         title: {
           type: String,
@@ -62,9 +64,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: String,
           value: ''
         },
-        idb: {
-          type: Object
-        }
       },
       create: function(e) {
         var blog = {
