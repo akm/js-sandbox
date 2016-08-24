@@ -70,7 +70,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           content: this.content,
           created_at: new Date().getTime()
         };
-        this.idb.put(blog).then(() => {
+        this.idb.blogs.put(blog).then(() => {
           this.fire('pageEvent', {page: 'index'});
           this.title = '';
           this.content = '';

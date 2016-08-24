@@ -79,12 +79,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         created_at: Number,
       },
       ready: function() {
-        this.idb.addEventListener('idb-ready', () => this.refresh());
         this.addEventListener('subroute-changed', () => this.refresh());
+        this.refresh();
       },
       refresh: function() {
         this.uuid = this.subroute.path.replace(/^\//, '')
-        this.idb.get(this.uuid)
+        this.idb.blogs.get(this.uuid)
           .then((blog) => {
             if (blog) {
               this.title = blog.title;
@@ -100,9 +100,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           content: this.content,
           created_at: this.created_at,
         };
-        this.idb.delete(this.uuid)
+        this.idb.blogs.delete(this.uuid)
           .then(() => {
-            this.idb.put(blog).then(() => {
+            this.idb.blogs.put(blog).then(() => {
               this.fire('pageEvent', {page: 'index'});
               this.title = '';
               this.content = '';
@@ -110,7 +110,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           });
       },
       delete: function(e) {
-        this.idb.delete(this.uuid)
+        this.idb.blogs.delete(this.uuid)
           .then(() => this.fire('pageEvent', {page: 'index'}));
       },
     });

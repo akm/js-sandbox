@@ -66,7 +66,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     </style>
 
-    <idb-node id="idb"
+    <idb-node id="idb-blogs"
               database-name="blog-app"
               version="2"
               object-store="blogs"
@@ -127,14 +127,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
 
         idb: {
-          type: Object
+          type: Object,
+          value: {},
         },
 
       },
 
       ready: function() {
-        this.$.idb.addEventListener('idb-ready', () => {
-          this.idb = this.$.idb;
+        this.$['idb-blogs'].addEventListener('idb-ready', () => {
+          this.idb.blogs = this.$['idb-blogs'];
         });
         this.addEventListener('pageEvent', this._pageChangeRequested);
       },
