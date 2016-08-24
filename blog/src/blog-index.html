@@ -44,11 +44,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         blogs: {
           type: Array,
           value: [],
+        },
+        idb: {
+          type: Object
         }
       },
       ready: function(){
-        this.idb = document.querySelector('blog-app').idb();
-        // idb.addEventListener('idb-ready', () => this.refresh());
         this.refresh()
       },
       refresh: function () {

@@ -101,7 +101,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </app-header>
 
         <iron-pages role="main" selected="[[page]]" attr-for-selected="name">
-          <blog-index name="index" id="blog-index"></blog-index>
+          <blog-index name="index" id="blog-index" idb="[[idb]]"></blog-index>
           <blog-new name="new"></blog-new>
           <blog-edit name="edit" subroute="{{subroute}}"></blog-edit>
         </iron-pages>
@@ -126,9 +126,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           observer: '_pageChanged'
         },
 
+        idb: {
+          type: Object
+        },
+
       },
 
       ready: function() {
+        this.$.idb.addEventListener('idb-ready', () => {
+          this.idb = this.$.idb;
+        });
         this.addEventListener('pageEvent', this._pageChangeRequested);
       },
       _pageChangeRequested: function(event) {
@@ -151,12 +158,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         if (page == 'index' && this.$['blog-index'].refresh) {
           this.$['blog-index'].refresh();
         }
-      },
-
-      idb: function(){
-        return this.$.idb;
-      },
-
+      }
     });
 
   </script>
