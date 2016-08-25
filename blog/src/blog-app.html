@@ -104,8 +104,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <iron-pages role="main" selected="[[page]]" attr-for-selected="name">
           <blog-index idb="[[idb]]" name="index" id="blog-index"></blog-index>
-          <blog-new   idb="[[idb]]" name="new"></blog-new>
-          <blog-edit  idb="[[idb]]" name="edit" subroute="{{subroute}}"></blog-edit>
+          <blog-new   idb="[[idb]]" name="new"  user="[[user]]"></blog-new>
+          <blog-edit  idb="[[idb]]" name="edit" user="[[user]]" subroute="{{subroute}}"></blog-edit>
           <blog-settings idb="[[idb]]" name="settings" user="[[user]]"></blog-settings>
         </iron-pages>
 
