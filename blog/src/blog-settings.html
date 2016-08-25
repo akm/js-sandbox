@@ -41,27 +41,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       properties: {
         user: {
           type: Object,
-          value: {}
         },
       },
       ready: function() {
-        this.refresh();
-      },
-      refresh: function() {
-        this.idb.settings.get('user').then((user) => {
-          if (user) {
-            this.user = user;
-            this.notifyPath('user.uuid');
-            this.notifyPath('user.name');
-          } else {
-            this.user = {
-              key: 'user',
-              uuid: this.generateUUID(),
-              name: null,
-            };
-            this.idb.settings.put(this.user);
-          }
-        });
       },
       update: function(e) {
         console.log(this.user)
