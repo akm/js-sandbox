@@ -51,7 +51,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.refresh()
       },
       refresh: function () {
-        this.idb.getAll()
+        this.idb.blogs.getAll()
             .then(blogs => this.blogs = blogs.sort(this.blogSort) )
             .catch(error => console.log(error));
       },
