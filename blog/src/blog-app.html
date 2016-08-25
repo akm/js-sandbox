@@ -19,7 +19,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
-<link rel="import" href="../bower_components/idb-node/idb-node.html">
+<link rel="import" href="../bower_components/idb-node/idb-database.html">
+<link rel="import" href="../bower_components/idb-node/idb-object-store.html">
 <link rel="import" href="blog-icons.html">
 
 <dom-module id="blog-app">
@@ -66,11 +67,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     </style>
 
-    <idb-node id="idb-blogs"
-              database-name="blog-app"
-              version="2"
-              object-store="blogs"
-              key-path="uuid"></idb-node>
+    <idb-database id="idb-database" name="blog-app" version="1">
+      <idb-object-store id="idb-blogs"    name="blogs"    key-path="uuid"></idb-object-store>
+      <idb-object-store id="idb-settings" name="settings" key-path="key" ></idb-object-store>
+    </idb-database>
 
     <app-location route="{{route}}"></app-location>
     <app-route
@@ -87,6 +87,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
           <a name="index" href="/index">List</a>
           <a name="new" href="/new">New</a>
+          <a name="settings" href="/settings">Settings</a>
         </iron-selector>
       </app-drawer>
 
@@ -104,6 +105,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <blog-index idb="[[idb]]" name="index" id="blog-index"></blog-index>
           <blog-new   idb="[[idb]]" name="new"></blog-new>
           <blog-edit  idb="[[idb]]" name="edit" subroute="{{subroute}}"></blog-edit>
+          <blog-settings idb="[[idb]]" name="settings"></blog-settings>
         </iron-pages>
 
       </app-header-layout>
@@ -130,12 +132,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: Object,
           value: {},
         },
-
       },
 
       ready: function() {
-        this.$['idb-blogs'].addEventListener('idb-ready', () => {
-          this.idb.blogs = this.$['idb-blogs'];
+        this.$['idb-database'].addEventListener('idb-ready', () => {
+          this.idb.blogs    = this.$['idb-blogs'];
+          this.idb.settings = this.$['idb-settings'];
         });
         this.addEventListener('pageEvent', this._pageChangeRequested);
       },
